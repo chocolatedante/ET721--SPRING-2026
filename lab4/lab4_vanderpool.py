@@ -74,3 +74,10 @@ print(f"{contacts}")
 
 
 print("\n---Exercise")
+
+users = ["peterpan@yahoo.com","annie@hotmail.com","Carl@hotmail.com","martha@gmail.com","cassie@yahoo.com","Josue@hotmail.com","John@hotmail.com"]
+emails= {
+    "yahoo.com": 0,
+    "hotmail.com": 0,
+    "gmail.com": 0
+}
