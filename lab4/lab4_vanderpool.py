@@ -29,11 +29,11 @@ for v in contacts:
     print(v)
 
  #for loop to print each value in the dictionary
- for v in contacts:
+for v in contacts:
     print(contacts[v])
 
  #for loop to print each key-value pair in the dictionary
- for v in contacts:
+for v in contacts:
     print(f'{v} phon number is {contacts[v]}')    
 
 
