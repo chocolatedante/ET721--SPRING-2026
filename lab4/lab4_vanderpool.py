@@ -81,3 +81,12 @@ emails= {
     "hotmail.com": 0,
     "gmail.com": 0
 }
+for user in users:
+    if "yahoo.com" in user:
+        emails["yahoo.com"] += 1
+    elif "hotmail.com" in user:
+        emails["hotmail.com"] += 1
+    elif "gmail.com" in user:
+        emails["gmail.com"] += 1
+
+print(emails)
