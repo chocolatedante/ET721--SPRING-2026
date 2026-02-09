@@ -13,10 +13,10 @@ a =area_rectangle(w,length)
 print_area_result(w,length, a)
 
 print("\n---Example 2: calculate the distance of two points")
-x1=collectnum('x1')
-x2=collectnum('x2')
-y1=collectnum('y1')
-y2=collectnum('y2')
+x1=collectnum()
+x2=collectnum()
+y1=collectnum()
+y2=collectnum()
 
 #testing
 #print(f"({x1},{y1})({x2},{y2})")
@@ -25,3 +25,8 @@ distance = calculate_distance(x1,x2,y1,y2)
 print_distance(x1,x2,y1,y2,distance)
 
 print('\nEXERCISE')
+
+GUESS_NUMBER = 7
+
+num = collect_random(1, 10)
+print_guess_result(num, GUESS_NUMBER)

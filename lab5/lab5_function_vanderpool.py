@@ -25,10 +25,23 @@ def collectnum():
 #function that calcluates and returns the distance
 #distance = square_root of ((x2-x1)^2 + (y2-y1)^2)
 def calculate_distance(x1,x2,y1,y2):
-    return math.sqrt(math.pow((x2-x1),2)) + math.pow((y2-y1),2)
+    return math.sqrt(math.pow((x2-x1),2) + math.pow((y2-y1),2))
 
 #function to print the result
 def print_distance(x1,x2,y1,y2, distance):
     print(f"The distance of points ({x1},{y1}) and ({x2},{y2} is {round(distance,2)})")
 
     #EXERCISE
+
+import random
+
+def collect_random(min_num, max_num):
+    return random.randint(min_num, max_num)
+
+def print_guess_result(random_num, guess_num):
+    if random_num < guess_num:
+        print("The number is smaller than the guess number")
+    elif random_num > guess_num:
+        print("The number is bigger than the guess number")
+    else:
+        print("You got it!")
