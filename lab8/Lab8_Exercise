@@ -1,0 +1,45 @@
+"""
+Dante Vanderpool
+Feb 24 2026
+Lab 8 Exercise
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from static import get_teams
+
+print("\n----EXERCISE: Teams Founded Before vs After 1950-----")
+
+
+nba_teams = get_teams()
+
+df_teams = pd.DataFrame(nba_teams)
+
+print("\nAll Teams:")
+print(df_teams.head())
+
+teams_before_1950 = df_teams[df_teams['year_founded'] < 1950]
+teams_after_1950 = df_teams[df_teams['year_founded'] >= 1950]
+
+print("\nTeams Founded Before 1950:")
+print(teams_before_1950[['full_name', 'year_founded']])
+
+print("\nTeams Founded After 1950:")
+print(teams_after_1950[['full_name', 'year_founded']])
+
+avg_before = teams_before_1950['year_founded'].mean()
+avg_after = teams_after_1950['year_founded'].mean()
+
+print(f"\nAverage founding year (Before 1950) = {avg_before}")
+print(f"Average founding year (After 1950) = {avg_after}")
+
+categories = ["Before 1950", "After 1950"]
+values = [avg_before, avg_after]
+
+plt.figure(figsize=(8,5))
+plt.bar(categories, values)
+plt.title("Average Founding Year Comparison")
+plt.ylabel("Average Year")
+plt.show(block=True)
+
+input("Press Enter to close...")
