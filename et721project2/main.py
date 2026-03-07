@@ -163,4 +163,4 @@ if __name__ == "__main__":
     print("Board full after filling:", game5.is_full())
 
 
-    #Connect4().play_game()
+    Connect4().play_game()
