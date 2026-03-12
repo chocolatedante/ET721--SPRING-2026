@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class="title">About Us</h1>
+    <h2 class="subtitle">Images</h2>
+
+    {% for pic in imagelist %}
+        <figure>
+            <img class="newpics" src="{{url_for('static', filename=pic)}}" alt="image">
+        </figure>
+    {% endfor %}
+
+</body>
+</html>
