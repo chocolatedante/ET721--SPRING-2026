@@ -1,25 +1,25 @@
 # Improved Connect 4 Game
 
 class Connect4:
-    ROWS = 8
+    ROWS = 6
     COLS = 7
 
     def __init__(self):
         self.board = [[' ' for _ in range(self.COLS)] for _ in range(self.ROWS)]
-        self.current_player = 'A'
+        self.current_player = 'X'
 
     def switch_player(self):
-        self.current_player = 'B' if self.current_player == 'A' else 'A'
+        self.current_player = 'O' if self.current_player == 'X' else 'X'
 
     def print_board(self):
         print("\nCurrent Board:")
         for row in self.board:
             print('|', end='')
             for cell in row:
-                if cell == 'A':
-                    print('\033[91mA\033[0m', end='|')  # Red for A
-                elif cell == 'B':
-                    print('\033[94mB\033[0m', end='|')  # Blue for B
+                if cell == 'X':
+                    print('\033[91mX\033[0m', end='|')  # Red for X
+                elif cell == 'O':
+                    print('\033[94mO\033[0m', end='|')  # Blue for O
                 else:
                     print(' ', end='|')
             print()
@@ -35,7 +35,7 @@ class Connect4:
             if self.board[row][column - 1] == ' ':
                 self.board[row][column - 1] = self.current_player
                 return True
-        return False
+        return False  # Column full
 
     def check_win(self, player):
         """Check if a player has 4 in a row (horizontal, vertical, diagonal)."""
@@ -100,67 +100,22 @@ class Connect4:
 
 
 if __name__ == "__main__":
-    game = Connect4()
-
-    # __init__ test
-    print("Testing __init__")
-    print("Current player:", game.current_player)
-    print("Board size:", len(game.board), "rows x", len(game.board[0]), "columns")
-    game.print_board()
-
-    # switch_player test
-    print("\nTesting switch_player")
-    print("Before switch:", game.current_player)
-    game.switch_player()
-    print("After first switch:", game.current_player)
-    game.switch_player()
-    print("After second switch:", game.current_player)
-
-    # drop_chip test
-    print("\nTesting drop_chip")
-    print("Drop in column 1:", game.drop_chip(1))
-    print("Drop in invalid column 0:", game.drop_chip(0))
-    print("Drop in invalid column 8:", game.drop_chip(8))
-    game.print_board()
-
-    # check_win horizontal test
-    print("\nTesting check_win (horizontal)")
-    game2 = Connect4()
-    game2.current_player = 'A'
-    game2.drop_chip(1)
-    game2.drop_chip(2)
-    game2.drop_chip(3)
-    game2.drop_chip(4)
-    game2.print_board()
-    print("Horizontal win for A:", game2.check_win('A'))
-
-    # check_win vertical test
-    print("\nTesting check_win (vertical)")
-    game3 = Connect4()
-    game3.current_player = 'A'
-    for _ in range(4):
-        game3.drop_chip(1)
-    game3.print_board()
-    print("Vertical win for A:", game3.check_win('A'))
-
-    # check_win diagonal test
-    print("\nTesting check_win (diagonal)")
-    game4 = Connect4()
-    game4.board[7][0] = 'A'
-    game4.board[6][1] = 'A'
-    game4.board[5][2] = 'A'
-    game4.board[4][3] = 'A'
-    game4.print_board()
-    print("Diagonal win for A:", game4.check_win('A'))
-
-    # is_full test
-    print("\nTesting is_full")
-    game5 = Connect4()
-    print("Board full before filling:", game5.is_full())
-    for col in range(1, game5.COLS + 1):
-        for _ in range(game5.ROWS):
-            game5.drop_chip(col)
-    print("Board full after filling:", game5.is_full())
-
-
     Connect4().play_game()
+
+"""
+Part 2 Documentation:
+I created unit tests for play_game(self) using Python's unittest framework.
+Since play_game depends on user input and printed output, 
+I used mock input values and captured stdout to verify the game behavior.
+I created pytest tests for check_win(self, player), covering horizontal, vertical, diagonal, and no-win conditions.
+
+Result:
+The tests confirmed that the win-detection output works correctly 
+for all required cases, and that play_game correctly handles 
+gameplay and invalid input before continuing.
+
+Some issues I ran into was not properly having each test run from the designated 
+folder of project 2. It was no big change, I used the CD command to make sure it reading
+the appropriate files. 
+
+"""
