@@ -34,7 +34,7 @@ def create_item():
 def get_items():
     return jsonify(items)
 
-#READ, UPDATE SINGLE ITEM
+#READ, UPDATE, DELETE SINGLE ITEM
 @app.route('/items/<item_id>', methods=['GET','PUT', 'DELETE'])
 def handle_item(item_id):
     item = items.get(item_id)
@@ -49,22 +49,22 @@ def handle_item(item_id):
         return jsonify(item)
 
     #UPDATE
-    elif request.method == 'PUT':
+    elif request.method == "PUT":
         if not item:
-            return render_template('error.html', message= "NOT FOUND"), 404
+            return render_template('error.html', message= "NOT FOUND", item=item), 404
 
         data=request.get_json()
         if not data:
-            return json({'error':'Invalid input'}), 400
+            return jsonify({'error':'Invalid input'}), 400
 
         items[item_id]= data
-        return render_template('update.html', item_id = item_id, item= data)
+        return render_template('update.html', item_id = item_id, item = data)
     
     #DELETE
     elif request.method == "DELETE":
         deleted_item = items.pop(item_id)
-        return render_template('delete.html', item_id=item_id, deleted_item = deleted_item)
-    
+        return render_template('delete.html', item_id = item_id, deleted_item = deleted_item)
+     
 
 if __name__=='__main__':
     app.run(debug=True)
