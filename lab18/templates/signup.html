@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
-
 {% block sitetitle %}Sign-up{% endblock %}
-
 {% block content %}
 <h1 class="title">New User Sign-up</h1>
 
 <form method="post" class="signup_form" onsubmit="return validatePassword()">
+    
+    <section class="form_section">
+        <input type="text" name="username" placeholder="Enter username" required />
+    </section>
     
     <section class="form_section">
         <input type="email" name="email" placeholder="Type email..." required />
@@ -33,5 +35,4 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
-
 {% endblock %}
