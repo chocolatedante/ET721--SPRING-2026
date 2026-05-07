@@ -3,12 +3,11 @@ Dante Vanderpool
 May 5 2026
 lab 19: unit test for verifying authentication in a Flask-SQLite app
 """
-
-
 import os 
 import sqlite3
 import pytest
 from app import app
+
 #-----------
 #TEST DATABASE SETUP
 #-----------
@@ -16,7 +15,8 @@ TEST_DB = "test_flask_auth.db"
 
 def init_test_db():
     #Simulate a database connection
-    conn = conn.cursor()
+    conn = sqlite3.connect(TEST_DB)
+    cursor = conn.cursor()
 
     # create a template table
     cursor.execute("""
@@ -31,7 +31,7 @@ def init_test_db():
 
     """)
     conn.commit()
-    conn.close
+    conn.close()
 
 #create a mock database to run the app.py file\
 @pytest.fixture
@@ -59,7 +59,7 @@ def client(monkeypatch):
     #cleanup test database after tests
     if os.path.exists(TEST_DB):
         os.remove(TEST_DB)    
-#---------
+#---------------
 #TEST HOME REDIRECT
 #---------------
 def test_home_redirect(client):
@@ -72,14 +72,14 @@ def test_home_redirect(client):
 # -----------
 def test_login_success(client):
     #first create a user to test the login later
-    client.post('/signup', dtata = {
+    client.post('/signup', data = {
         "username": "loginuser",
         "email": "login@example.com",
         "password" : "123456"
     })
 
     #test the login with the user infor above
-    response = client.post('login', data = {
+    response = client.post('/login', data = {
         "email": "login@example.com",
         "password" : "123456"
     }, follow_redirects = True)
